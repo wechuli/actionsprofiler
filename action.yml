@@ -1,0 +1,13 @@
+name: 'System Metrics Collector'
+description: 'A GitHub Action to collect system metrics through the lifecycle of a job using Prometheus.'
+inputs:
+  job_name:
+    description: 'The name of the job for which metrics are being collected.'
+    required: true
+    default: 'default-job'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+  pre: 'dist/pre.js'
+  post: 'dist/post.js'
