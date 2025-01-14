@@ -1,0 +1,33 @@
+name: Metrics Collector Workflow
+
+on: [push, pull_request]
+
+jobs:
+  collect-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run pre-step
+        run: node dist/pre.js
+
+      - name: Collect system metrics
+        run: node dist/index.js
+
+      - name: Upload metrics as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: system-metrics
+          path: metrics.txt
+
+      - name: Run post-step
+        run: node dist/post.js

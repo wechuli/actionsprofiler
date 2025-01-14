@@ -1,0 +1,17 @@
+{
+  "name": "actionsprofiler",
+  "version": "1.0.0",
+  "description": "A GitHub Action to collect system metrics through the lifecycle of a job using Prometheus.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "pre": "node dist/pre.js",
+    "post": "node dist/post.js"
+  },
+  "dependencies": {
+    "prom-client": "^14.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
+}
